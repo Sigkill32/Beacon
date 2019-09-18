@@ -1,33 +1,150 @@
-.App {
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.chat-container {
+  background-color: #eb9776;
+  display: inline-block;
+  border-radius: 50%;
+  padding: 20px;
+  border: none;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  cursor: pointer;
+  outline: none;
+}
+
+.hide {
+  display: none;
+}
+
+.chat-box {
+  position: fixed;
+  right: 20px;
+  bottom: 100px;
+  height: 500px;
+  background-color: rgba(0, 0, 0, 0.04);
+  border-radius: 0 0 4px 4px;
+  width: 300px;
+  z-index: 999;
+  box-shadow: 0px 0px 4px 4px #f7f7f7;
+}
+
+.chat-head {
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-color: #e38f6e;
+  padding: 20px 0;
+  border-radius: 4px 4px 0 0;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.chat-contact {
+  text-align: center;
+  background-color: #e38f6e;
+  padding: 10px 5px;
+  color: white;
+}
+.chat-contact h4 {
+  font-weight: normal;
+}
+.chat-contact p {
+  font-size: 15px;
+}
+.chat-contact .contacts {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.chat-contact .contacts img {
+  width: 40px;
+  border-radius: 20px;
+  border: 2px solid white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.chat-form {
+  position: absolute;
+  margin-left: 25px;
+  margin-top: 20px;
+  width: 250px;
 }
+.chat-form input {
+  display: block;
+  width: 100%;
+  margin: 5px 0;
+  font-size: 13px;
+  padding: 0 5px;
+  height: 36px;
+  border-radius: 5px;
+  border: 0.5px solid #ebebeb;
+  background-color: #f7f7f7;
+}
+.chat-form textarea {
+  display: block;
+  width: 100%;
+  margin: 5px 0;
+  height: 70px;
+  padding: 0 5px;
+  border-radius: 5px;
+  border: 0.5px solid #f7f7f7;
+}
+.chat-form button {
+  background-color: #eb9776;
+  border-radius: 5px;
+  padding: 15px 40px;
+  border: none;
+  width: 100%;
+  margin: 5px 0px;
+  margin-left: 5px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+.chat-form button:hover {
+  background-color: #e38f6e;
+}
+
+.users table {
+  width: 100%;
+}
+.users caption {
+  font-size: 1.6em;
+  font-weight: 400;
+  padding: 10px 0;
+}
+.users thead th {
+  font-weight: 400;
+  background: #8a97a0;
+  color: #fff;
+}
+.users tr {
+  background: #f4f7f8;
+  border-bottom: 1px solid #fff;
+  margin-bottom: 5px;
+}
+.users tr:nth-child(even) {
+  background: #e8eeef;
+}
+.users th,
+.users td {
+  text-align: left;
+  padding: 20px;
+  font-weight: 300;
+}
+.users tfoot tr {
+  background: none;
+}
+.users tfoot td {
+  padding: 10px 2px;
+  font-size: 0.8em;
+  font-style: italic;
+  color: #8a97a0;
+}
+
+.sign-in {
+  display: inline-block;
+  border: solid;
+}
+
+/*# sourceMappingURL=App.css.map */

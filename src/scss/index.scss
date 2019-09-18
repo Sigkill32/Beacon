@@ -1,0 +1,161 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.chat-container {
+  background-color: rgb(235, 151, 118);
+  display: inline-block;
+  border-radius: 50%;
+  padding: 20px;
+  border: none;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  cursor: pointer;
+  outline: none;
+}
+
+.hide {
+  display: none;
+}
+
+.chat-box {
+  position: fixed;
+  right: 20px;
+  bottom: 100px;
+  height: 500px;
+  background-color: rgba(0, 0, 0, 0.04);
+  border-radius: 0 0 4px 4px;
+  width: 300px;
+  z-index: 999;
+  box-shadow: 0px 0px 4px 4px #f7f7f7;
+}
+
+.chat-head {
+  text-align: center;
+  background-color: rgb(227, 143, 110);
+  padding: 20px 0;
+  border-radius: 4px 4px 0 0;
+  color: white;
+}
+
+.chat-contact {
+  text-align: center;
+  h4 {
+    font-weight: normal;
+  }
+
+  p {
+    font-size: 15px;
+  }
+
+  background-color: rgb(227, 143, 110);
+  padding: 10px 5px;
+  color: white;
+
+  .contacts {
+    display: flex;
+    justify-content: center;
+    img {
+      width: 40px;
+      border-radius: 20px;
+      border: 2px solid white;
+    }
+    margin-bottom: 20px;
+  }
+}
+
+.chat-form {
+  position: absolute;
+  margin-left: 25px;
+  margin-top: 20px;
+  input {
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+    font-size: 13px;
+    padding: 0 5px;
+    height: 36px;
+    border-radius: 5px;
+    border: 0.5px solid #ebebeb;
+    background-color: #f7f7f7;
+  }
+
+  textarea {
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+    height: 70px;
+    padding: 0 5px;
+    border-radius: 5px;
+    border: 0.5px solid #f7f7f7;
+  }
+
+  button {
+    background-color: rgb(235, 151, 118);
+    border-radius: 5px;
+    padding: 15px 40px;
+    border: none;
+    width: 100%;
+    margin: 5px 0px;
+    margin-left: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    &:hover {
+      background-color: rgb(227, 143, 110);
+    }
+  }
+  width: 250px;
+}
+
+.users {
+  table {
+    width: 100%;
+  }
+
+  caption {
+    font-size: 1.6em;
+    font-weight: 400;
+    padding: 10px 0;
+  }
+
+  thead th {
+    font-weight: 400;
+    background: #8a97a0;
+    color: #fff;
+  }
+
+  tr {
+    background: #f4f7f8;
+    border-bottom: 1px solid #fff;
+    margin-bottom: 5px;
+  }
+
+  tr:nth-child(even) {
+    background: #e8eeef;
+  }
+
+  th,
+  td {
+    text-align: left;
+    padding: 20px;
+    font-weight: 300;
+  }
+
+  tfoot tr {
+    background: none;
+  }
+
+  tfoot td {
+    padding: 10px 2px;
+    font-size: 0.8em;
+    font-style: italic;
+    color: #8a97a0;
+  }
+}
+
+.sign-in {
+  display: inline-block;
+  border: solid;
+}
