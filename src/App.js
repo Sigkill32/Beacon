@@ -26,18 +26,21 @@ class App extends Component {
 
   getData = async () => {
     let users = [];
-    const collection = await db.collection("Users").get();
-    const docs = collection.docs.map(doc => doc.data());
-    docs.map(doc =>
-      users.push({
-        name: doc.name,
-        email: doc.email,
-        message: doc.message,
-        sub: doc.sub
-      })
-    );
-    this.setState({ users });
-    console.log(users);
+    try {
+      const collection = await db.collection("Users").get();
+      const docs = collection.docs.map(doc => doc.data());
+      docs.map(doc =>
+        users.push({
+          name: doc.name,
+          email: doc.email,
+          message: doc.message,
+          sub: doc.sub
+        })
+      );
+      this.setState({ users });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   writeData = async (name, email, sub, message) => {
@@ -55,9 +58,12 @@ class App extends Component {
 
   handleSend = () => {
     const { name, sub, email, message } = this.state;
-    let users = [...this.state.users, { name, sub, email, message }];
-    this.setState({ name: "", sub: "", email: "", message: "", users });
-    this.writeData(name, email, sub, message);
+    const result = this.validateForm(name, email, sub, message);
+    if (result) {
+      let users = [...this.state.users, { name, sub, email, message }];
+      this.setState({ name: "", sub: "", email: "", message: "", users });
+      this.writeData(name, email, sub, message);
+    }
   };
 
   handleChange = event => {
@@ -73,6 +79,30 @@ class App extends Component {
     this.setState({ closed: true });
   };
 
+  validateForm = (name, email, sub, message) => {
+    const emailRegex = new RegExp(
+      /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+.)+[^<>()[\].,;:\s@"]{2,})$/
+    );
+    const isEmailValid = emailRegex.test(email);
+    const isNameValid = this.validateStr(name);
+    const isSubValid = this.validateStr(sub);
+    const isMessageValid = this.validateStr(message);
+    console.log(email);
+    console.log(isEmailValid, isNameValid);
+
+    return isEmailValid && isNameValid && isSubValid && isMessageValid
+      ? true
+      : false;
+  };
+
+  validateStr = str => {
+    return str === "" ? false : true;
+  };
+
+  handleUpload = () => {
+    this.upload.click();
+  };
+
   render() {
     const { name, email, sub, message, users, closed } = this.state;
     const { user, signOut, signInWithGoogle } = this.props;
@@ -80,6 +110,9 @@ class App extends Component {
       <div>
         {user ? (
           <div>
+            <button onClick={signOut} className="sign-out">
+              Sign out
+            </button>
             <Users users={users} />
             <ChatBox
               name={name}
@@ -89,6 +122,8 @@ class App extends Component {
               onHandleChange={this.handleChange}
               onHandleSend={this.handleSend}
               closed={closed}
+              onRef={ref => (this.upload = ref)}
+              onHandleUpload={this.handleUpload}
             />
             <ChatButton
               closed={closed}
@@ -98,8 +133,10 @@ class App extends Component {
           </div>
         ) : (
           <div className="sign-in">
-            <p>Please Sign in</p>
-            <button onClick={signInWithGoogle}>Sign in With Google</button>
+            <div>
+              <p>Please Sign in to Continue</p>
+              <button onClick={signInWithGoogle}>Sign in With Google</button>
+            </div>
           </div>
         )}
       </div>

@@ -10,7 +10,9 @@ const ChatBox = ({
   sub,
   email,
   message,
-  closed
+  closed,
+  onRef,
+  onHandleUpload
 }) => {
   return (
     <div className={closed ? "chat-box hide" : "chat-box"}>
@@ -23,6 +25,8 @@ const ChatBox = ({
         sub={sub}
         email={email}
         message={message}
+        onRef={onRef}
+        onHandleUpload={onHandleUpload}
       />
     </div>
   );

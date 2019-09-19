@@ -23,85 +23,133 @@
 .chat-box {
   position: fixed;
   right: 20px;
-  bottom: 100px;
-  height: 500px;
+  bottom: 90px;
+  height: 600px;
   background-color: rgba(0, 0, 0, 0.04);
   border-radius: 0 0 4px 4px;
-  width: 300px;
+  width: 350px;
   z-index: 999;
-  box-shadow: 0px 0px 4px 4px #f7f7f7;
+  box-shadow: 0 0 8px 0 #bbbbbb;
 }
 
 .chat-head {
   text-align: center;
   background-color: #e38f6e;
-  padding: 20px 0;
+  height: 48px;
   border-radius: 4px 4px 0 0;
   color: white;
+}
+.chat-head p {
+  padding: 15px 0;
+  font-size: 13px;
 }
 
 .chat-contact {
   text-align: center;
   background-color: #e38f6e;
-  padding: 10px 5px;
   color: white;
+  padding-bottom: 31px;
 }
 .chat-contact h4 {
-  font-weight: normal;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  padding-top: 7px;
+  line-height: 24px;
 }
 .chat-contact p {
-  font-size: 15px;
+  font-size: 14px;
+  margin-top: -9px;
+  opacity: 0.65;
+  margin-bottom: 8px;
+  line-height: 19px;
 }
 .chat-contact .contacts {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  max-width: 230px;
+  min-height: 64px;
+  width: 100%;
+  min-width: 0px;
+  padding-top: 8px;
+  margin: auto;
 }
 .chat-contact .contacts img {
-  width: 40px;
-  border-radius: 20px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
   border: 2px solid white;
+  margin-left: -4px;
 }
 
 .chat-form {
-  position: absolute;
-  margin-left: 25px;
-  margin-top: 20px;
-  width: 250px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 6px;
+  background-color: #f9fafa;
 }
+
+.chat-form-content {
+  padding: 16px;
+}
+.chat-form-content .textarea-container {
+  position: relative;
+}
+.chat-form-content .textarea-container textarea {
+  display: block;
+  width: 91%;
+  height: 52px;
+  padding: 12px;
+  border-radius: 5px;
+  border: 2px solid #c1cbd4;
+  margin-bottom: 10px;
+  opacity: 0.6;
+  float: left;
+  font-size: 14px;
+}
+.chat-form-content .textarea-container button {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  right: 10px;
+  top: 45px;
+  cursor: pointer;
+  outline: none;
+}
+.chat-form-content .textarea-container svg {
+  fill: #c1cbd4;
+}
+.chat-form-content .textarea-container svg:hover {
+  fill: grey;
+}
+
 .chat-form input {
   display: block;
-  width: 100%;
-  margin: 5px 0;
-  font-size: 13px;
-  padding: 0 5px;
+  font-size: 14px;
   height: 36px;
   border-radius: 5px;
-  border: 0.5px solid #ebebeb;
-  background-color: #f7f7f7;
+  border: 2px solid #c1cbd4;
+  background-color: #ffffff;
+  margin-bottom: 5px;
+  width: 88%;
+  padding: 0 16px;
+  opacity: 0.6;
 }
-.chat-form textarea {
-  display: block;
-  width: 100%;
-  margin: 5px 0;
-  height: 70px;
-  padding: 0 5px;
-  border-radius: 5px;
-  border: 0.5px solid #f7f7f7;
-}
-.chat-form button {
+.chat-form #send-button {
   background-color: #eb9776;
-  border-radius: 5px;
-  padding: 15px 40px;
-  border: none;
+  border-radius: 4px;
+  padding: 16px 40px;
   width: 100%;
-  margin: 5px 0px;
-  margin-left: 5px;
   color: white;
   font-weight: bold;
   cursor: pointer;
+  font-size: 14px;
+  border: none;
 }
-.chat-form button:hover {
+.chat-form #send-button:hover {
   background-color: #e38f6e;
 }
 
@@ -143,8 +191,50 @@
 }
 
 .sign-in {
-  display: inline-block;
-  border: solid;
+  position: fixed;
+  bottom: 50%;
+  right: 50%;
 }
+.sign-in div {
+  padding: 20px;
+  border: 0.5px dotted grey;
+  border-radius: 20px;
+  text-align: center;
+  display: inline-block;
+}
+.sign-in div button {
+  background-color: #07c;
+  padding: 10px;
+  color: white;
+  border-radius: 10px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+.sign-in div button:hover {
+  background-color: #0095ff;
+}
+.sign-in div p {
+  margin-bottom: 15px;
+}
+
+.sign-out {
+  float: right;
+  margin: 20px;
+  background-color: black;
+  padding: 10px 15px;
+  color: white;
+  border-radius: 20px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+.sign-out:hover {
+  background-color: grey;
+}
+
+/*# sourceMappingURL=App.css.map */
 
 /*# sourceMappingURL=App.css.map */

@@ -2,8 +2,9 @@
   margin: 0;
   padding: 0;
 }
+
 .chat-container {
-  background-color: rgb(235, 151, 118);
+  background-color: #eb9776;
   display: inline-block;
   border-radius: 50%;
   padding: 20px;
@@ -22,140 +23,224 @@
 .chat-box {
   position: fixed;
   right: 20px;
-  bottom: 100px;
-  height: 500px;
+  bottom: 90px;
+  height: 600px;
   background-color: rgba(0, 0, 0, 0.04);
   border-radius: 0 0 4px 4px;
-  width: 300px;
+  width: 350px;
   z-index: 999;
-  box-shadow: 0px 0px 4px 4px #f7f7f7;
+  box-shadow: 0 0 8px 0 rgb(187, 187, 187);
 }
 
 .chat-head {
   text-align: center;
-  background-color: rgb(227, 143, 110);
-  padding: 20px 0;
+  background-color: #e38f6e;
+  height: 48px;
   border-radius: 4px 4px 0 0;
   color: white;
+  p {
+    padding: 15px 0;
+    font-size: 13px;
+  }
 }
 
 .chat-contact {
   text-align: center;
-  h4 {
-    font-weight: normal;
-  }
-
-  p {
-    font-size: 15px;
-  }
-
-  background-color: rgb(227, 143, 110);
-  padding: 10px 5px;
+  background-color: #e38f6e;
   color: white;
-
+  padding-bottom: 31px;
+  h4 {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    padding-top: 7px;
+    line-height: 24px;
+  }
+  p {
+    font-size: 14px;
+    margin-top: -9px;
+    opacity: 0.65;
+    margin-bottom: 8px;
+    line-height: 19px;
+  }
   .contacts {
     display: flex;
     justify-content: center;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    max-width: 230px;
+    min-height: 64px;
+    width: 100%;
+    min-width: 0px;
+    padding-top: 8px;
+    margin: auto;
     img {
-      width: 40px;
-      border-radius: 20px;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
       border: 2px solid white;
+      margin-left: -4px;
     }
-    margin-bottom: 20px;
   }
 }
 
 .chat-form {
-  position: absolute;
-  margin-left: 25px;
-  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 6px;
+  background-color: #f9fafa;
+}
+
+.chat-form-content {
+  padding: 16px;
+  .textarea-container {
+    position: relative;
+    textarea {
+      display: block;
+      width: 91%;
+      height: 52px;
+      padding: 12px;
+      border-radius: 5px;
+      border: 2px solid #c1cbd4;
+      margin-bottom: 10px;
+      opacity: 0.6;
+      float: left;
+      font-size: 14px;
+    }
+    button {
+      background-color: transparent;
+      border: none;
+      position: absolute;
+      right: 10px;
+      top: 45px;
+      cursor: pointer;
+      outline: none;
+    }
+
+    svg {
+      fill: #c1cbd4;
+      &:hover {
+        fill: grey;
+      }
+    }
+  }
+}
+
+.chat-form {
   input {
     display: block;
-    width: 100%;
-    margin: 5px 0;
-    font-size: 13px;
-    padding: 0 5px;
+    font-size: 14px;
     height: 36px;
     border-radius: 5px;
-    border: 0.5px solid #ebebeb;
-    background-color: #f7f7f7;
+    border: 2px solid #c1cbd4;
+    background-color: #ffffff;
+    margin-bottom: 5px;
+    width: 88%;
+    padding: 0 16px;
+    opacity: 0.6;
   }
-
-  textarea {
-    display: block;
+  #send-button {
+    background-color: #eb9776;
+    border-radius: 4px;
+    padding: 16px 40px;
     width: 100%;
-    margin: 5px 0;
-    height: 70px;
-    padding: 0 5px;
-    border-radius: 5px;
-    border: 0.5px solid #f7f7f7;
-  }
-
-  button {
-    background-color: rgb(235, 151, 118);
-    border-radius: 5px;
-    padding: 15px 40px;
-    border: none;
-    width: 100%;
-    margin: 5px 0px;
-    margin-left: 5px;
     color: white;
     font-weight: bold;
     cursor: pointer;
+    font-size: 14px;
+    border: none;
     &:hover {
-      background-color: rgb(227, 143, 110);
+      background-color: #e38f6e;
     }
   }
-  width: 250px;
 }
 
 .users {
   table {
     width: 100%;
   }
-
   caption {
     font-size: 1.6em;
     font-weight: 400;
     padding: 10px 0;
   }
-
   thead th {
     font-weight: 400;
     background: #8a97a0;
     color: #fff;
   }
-
   tr {
     background: #f4f7f8;
     border-bottom: 1px solid #fff;
     margin-bottom: 5px;
+    &:nth-child(even) {
+      background: #e8eeef;
+    }
   }
-
-  tr:nth-child(even) {
-    background: #e8eeef;
-  }
-
   th,
   td {
     text-align: left;
     padding: 20px;
     font-weight: 300;
   }
-
-  tfoot tr {
-    background: none;
-  }
-
-  tfoot td {
-    padding: 10px 2px;
-    font-size: 0.8em;
-    font-style: italic;
-    color: #8a97a0;
+  tfoot {
+    tr {
+      background: none;
+    }
+    td {
+      padding: 10px 2px;
+      font-size: 0.8em;
+      font-style: italic;
+      color: #8a97a0;
+    }
   }
 }
 
 .sign-in {
-  display: inline-block;
-  border: solid;
+  position: fixed;
+  bottom: 50%;
+  right: 50%;
+  div {
+    padding: 20px;
+    border: 0.5px dotted grey;
+    border-radius: 20px;
+    text-align: center;
+    display: inline-block;
+    button {
+      background-color: #07c;
+      padding: 10px;
+      color: white;
+      border-radius: 10px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      &:hover {
+        background-color: #0095ff;
+      }
+    }
+
+    p {
+      margin-bottom: 15px;
+    }
+  }
 }
+
+.sign-out {
+  float: right;
+  margin: 20px;
+  background-color: black;
+  padding: 10px 15px;
+  color: white;
+  border-radius: 20px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  &:hover {
+    background-color: grey;
+  }
+}
+
+/*# sourceMappingURL=App.css.map */
