@@ -70,7 +70,7 @@ class App extends Component {
         users,
         noEmailButton: "sent"
       });
-      // this.writeData(name, email, sub, message);
+      this.writeData(name, email, sub, message);
     }
   };
 
