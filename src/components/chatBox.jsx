@@ -2,6 +2,8 @@ import React from "react";
 import ChatHead from "./chatHead";
 import ChatForm from "./chatForm";
 import ChatContact from "./chatContact";
+import EmailButton from "./emailButton";
+import Confirmation from "./confirmation";
 
 const ChatBox = ({
   onHandleChange,
@@ -12,22 +14,38 @@ const ChatBox = ({
   message,
   closed,
   onRef,
-  onHandleUpload
+  onHandleUpload,
+  noEmailButton,
+  onHandleEmailButton,
+  onHandleBack
 }) => {
   return (
     <div className={closed ? "chat-box hide" : "chat-box"}>
-      <ChatHead />
-      <ChatContact />
-      <ChatForm
-        onHandleChange={onHandleChange}
-        onHandleSend={onHandleSend}
-        name={name}
-        sub={sub}
-        email={email}
-        message={message}
-        onRef={onRef}
-        onHandleUpload={onHandleUpload}
-      />
+      <ChatHead onHandleBack={onHandleBack} />
+      <ChatContact noEmailButton={noEmailButton} />
+      {(() => {
+        switch (noEmailButton) {
+          case "init":
+            return <EmailButton onHandleEmailButton={onHandleEmailButton} />;
+          case "form":
+            return (
+              <ChatForm
+                onHandleChange={onHandleChange}
+                onHandleSend={onHandleSend}
+                name={name}
+                sub={sub}
+                email={email}
+                message={message}
+                onRef={onRef}
+                onHandleUpload={onHandleUpload}
+              />
+            );
+          case "sent":
+            return <Confirmation />;
+          default:
+            return null;
+        }
+      })()}
     </div>
   );
 };

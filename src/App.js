@@ -17,7 +17,8 @@ class App extends Component {
     sub: "",
     email: "",
     message: "",
-    closed: true
+    closed: true,
+    noEmailButton: "init" // "init" = show button || "form" = show form || "sent" = show confirmation
   };
 
   async componentDidMount() {
@@ -61,8 +62,15 @@ class App extends Component {
     const result = this.validateForm(name, email, sub, message);
     if (result) {
       let users = [...this.state.users, { name, sub, email, message }];
-      this.setState({ name: "", sub: "", email: "", message: "", users });
-      this.writeData(name, email, sub, message);
+      this.setState({
+        name: "",
+        sub: "",
+        email: "",
+        message: "",
+        users,
+        noEmailButton: "sent"
+      });
+      // this.writeData(name, email, sub, message);
     }
   };
 
@@ -83,12 +91,10 @@ class App extends Component {
     const emailRegex = new RegExp(
       /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+.)+[^<>()[\].,;:\s@"]{2,})$/
     );
-    const isEmailValid = emailRegex.test(email);
-    const isNameValid = this.validateStr(name);
-    const isSubValid = this.validateStr(sub);
-    const isMessageValid = this.validateStr(message);
-    console.log(email);
-    console.log(isEmailValid, isNameValid);
+    const isEmailValid = emailRegex.test(email.trim());
+    const isNameValid = this.validateStr(name.trim());
+    const isSubValid = this.validateStr(sub.trim());
+    const isMessageValid = this.validateStr(message.trim());
 
     return isEmailValid && isNameValid && isSubValid && isMessageValid
       ? true
@@ -103,8 +109,24 @@ class App extends Component {
     this.upload.click();
   };
 
+  handleEmailButton = () => {
+    this.setState({ noEmailButton: "form" });
+  };
+
+  handleBack = () => {
+    this.setState({ noEmailButton: "init" });
+  };
+
   render() {
-    const { name, email, sub, message, users, closed } = this.state;
+    const {
+      name,
+      email,
+      sub,
+      message,
+      users,
+      closed,
+      noEmailButton
+    } = this.state;
     const { user, signOut, signInWithGoogle } = this.props;
     return (
       <div>
@@ -124,6 +146,9 @@ class App extends Component {
               closed={closed}
               onRef={ref => (this.upload = ref)}
               onHandleUpload={this.handleUpload}
+              noEmailButton={noEmailButton}
+              onHandleEmailButton={this.handleEmailButton}
+              onHandleBack={this.handleBack}
             />
             <ChatButton
               closed={closed}
@@ -143,8 +168,6 @@ class App extends Component {
     );
   }
 }
-
-// export default App;
 
 export default withFirebaseAuth({
   providers,
