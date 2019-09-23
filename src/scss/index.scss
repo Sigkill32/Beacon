@@ -19,11 +19,13 @@
 
   .close-icon {
     padding: 23px 10px 10px 25px;
-
     svg {
       margin-right: 5px;
       margin-bottom: 5px;
     }
+    transform: rotate(90deg);
+    transition: transform 1s linear;
+    transition-delay: 2s;
   }
 }
 
@@ -36,7 +38,6 @@
   right: 20px;
   bottom: 90px;
   height: 600px;
-  // background-color: rgba(0, 0, 0, 0.04);
   background-color: white;
   border-radius: 0 0 4px 4px;
   width: 350px;
@@ -134,6 +135,7 @@
       float: left;
       font-size: 14px;
       outline-color: #07c;
+      resize: none;
     }
     button {
       background-color: transparent;

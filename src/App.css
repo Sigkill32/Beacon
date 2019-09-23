@@ -19,6 +19,9 @@
 }
 .chat-container .close-icon {
   padding: 23px 10px 10px 25px;
+  transform: rotate(90deg);
+  transition: transform 1s linear;
+  transition-delay: 2s;
 }
 .chat-container .close-icon svg {
   margin-right: 5px;
@@ -133,6 +136,7 @@
   float: left;
   font-size: 14px;
   outline-color: #07c;
+  resize: none;
 }
 .chat-form-content .textarea-container button {
   background-color: transparent;
