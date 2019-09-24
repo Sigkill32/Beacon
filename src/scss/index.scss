@@ -19,15 +19,26 @@
 
   .close-icon {
     padding: 23px 10px 10px 25px;
+    transform: rotate(0);
+    // animation: rotate 0.4s linear;
     svg {
       margin-right: 5px;
       margin-bottom: 5px;
     }
     transform: rotate(90deg);
-    transition: transform 1s linear;
-    transition-delay: 2s;
+    transition-property: transform;
+    transition-duration: 2s;
   }
 }
+
+// @keyframes rotate {
+//   from {
+//     transform: rotate(0);
+//   }
+//   to {
+//     transform: rotate(90deg);
+//   }
+// }
 
 .hide {
   display: none;

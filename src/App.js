@@ -54,6 +54,9 @@ class App extends Component {
       });
     } catch (error) {
       console.log(error);
+      const users = this.state.users;
+      users.pop();
+      this.setState({ users });
     }
   };
 
