@@ -20,15 +20,21 @@
 .chat-container .close-icon {
   padding: 23px 10px 10px 25px;
   transform: rotate(0);
-  transform: rotate(90deg);
-  transition-property: transform;
-  transition-duration: 2s;
+  animation: rotate 100ms linear;
 }
 .chat-container .close-icon svg {
   margin-right: 5px;
   margin-bottom: 5px;
 }
 
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(90deg);
+  }
+}
 .hide {
   display: none;
 }
