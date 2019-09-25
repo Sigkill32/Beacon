@@ -1,12 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
-import {
-  db,
-  firebaseAppAuth,
-  providers,
-  withFirebaseAuth,
-  firebaseApp
-} from "./config/firebaseConf";
+import { db, firebaseApp } from "./config/firebaseConf";
 import "./App.css";
 import Dashboard from "./components/dashboard";
 import Nav from "./components/nav";
@@ -149,33 +143,44 @@ class App extends Component {
       <div>
         <Nav authenticated={authenticated} />
         <Switch>
+          {/* {authenticated ? <Redirect from="/" to="/dashboard" /> : null} */}
           <Route
             path="/login"
             render={props => <Login {...props} authenticated={authenticated} />}
           />
-          <Route path="/register" component={SignUp} />
+          <Route
+            path="/register"
+            render={props => (
+              <SignUp {...props} authenticated={authenticated} />
+            )}
+          />
           <Route
             path="/dashboard"
-            render={props => (
-              <Dashboard
-                users={users}
-                name={name}
-                email={email}
-                sub={sub}
-                message={message}
-                onHandleChange={this.handleChange}
-                onHandleSend={this.handleSend}
-                closed={closed}
-                onRef={ref => (this.upload = ref)}
-                onHandleUpload={this.handleUpload}
-                noEmailButton={noEmailButton}
-                onHandleEmailButton={this.handleEmailButton}
-                onHandleBack={this.handleBack}
-                onHandleClose={this.handleClose}
-                onHandleMessage={this.handleMessage}
-                {...props}
-              />
-            )}
+            render={
+              authenticated
+                ? props => (
+                    <Dashboard
+                      authenticated={authenticated}
+                      users={users}
+                      name={name}
+                      email={email}
+                      sub={sub}
+                      message={message}
+                      onHandleChange={this.handleChange}
+                      onHandleSend={this.handleSend}
+                      closed={closed}
+                      onRef={ref => (this.upload = ref)}
+                      onHandleUpload={this.handleUpload}
+                      noEmailButton={noEmailButton}
+                      onHandleEmailButton={this.handleEmailButton}
+                      onHandleBack={this.handleBack}
+                      onHandleClose={this.handleClose}
+                      onHandleMessage={this.handleMessage}
+                      {...props}
+                    />
+                  )
+                : props => <Login {...props} authenticated={authenticated} />
+            }
           />
         </Switch>
       </div>
@@ -183,7 +188,4 @@ class App extends Component {
   }
 }
 
-export default withFirebaseAuth({
-  providers,
-  firebaseAppAuth
-})(App);
+export default App;

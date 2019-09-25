@@ -189,6 +189,9 @@
   background-color: #e38f6e;
 }
 
+.users {
+  margin-top: 40px;
+}
 .users table {
   width: 100%;
 }
@@ -256,8 +259,9 @@
 }
 
 .sign-out {
-  float: right;
-  margin: 20px;
+  position: absolute;
+  right: 20px;
+  top: 8px;
   background-color: black;
   padding: 10px 15px;
   color: white;
@@ -374,7 +378,7 @@
 
 .nav {
   background-color: #f96e5b;
-  padding: 10px;
+  padding: 16px;
 }
 .nav a {
   margin-right: 20px;
@@ -414,11 +418,37 @@
   outline: none;
   width: 370px;
 }
+.login .log-spin {
+  margin-top: 10px;
+  margin-left: calc(50% - 11px);
+}
 .login p {
   margin-top: 20px;
   text-align: center;
   color: red;
   font-size: 15px;
+}
+
+.Already-logged {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: calc((100% - 748.484px) / 2);
+}
+.Already-logged button {
+  position: relative;
+  margin-left: 20px;
+  background-color: black;
+  padding: 10px 15px;
+  color: white;
+  border-radius: 20px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+.Already-logged button:hover {
+  background-color: grey;
 }
 
 .sign-up {
@@ -454,6 +484,12 @@
   text-align: center;
   color: red;
   font-size: 15px;
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
 }
 
 /*# sourceMappingURL=App.css.map */

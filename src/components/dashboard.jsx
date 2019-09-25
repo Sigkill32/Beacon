@@ -2,8 +2,10 @@ import React from "react";
 import Users from "./users";
 import ChatBox from "./chatBox";
 import ChatButton from "./chatButton";
+import LogOut from "./logout";
 
 const Dashboard = ({
+  authenticated,
   name,
   users,
   email,
@@ -22,6 +24,7 @@ const Dashboard = ({
 }) => {
   return (
     <div className="dashboard">
+      <LogOut />
       <Users users={users} />
       <ChatBox
         name={name}
