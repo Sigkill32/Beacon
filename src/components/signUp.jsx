@@ -36,10 +36,13 @@ class SignUp extends Component {
     firebaseApp.auth().signOut();
   };
 
+  handleKeyDown = e => {
+    if (e.keyCode === 13) this.handleSubmit();
+  };
+
   render() {
     const { username, password, error, confPass } = this.state;
     const { authenticated } = this.props;
-    console.log(authenticated);
     return (
       <div className="sign-up-wrapper">
         {authenticated ? (
@@ -55,6 +58,7 @@ class SignUp extends Component {
               onChange={this.handleChange}
               value={username}
               placeholder="Username"
+              onKeyDown={this.handleKeyDown}
             />
             <input
               type="password"
@@ -62,6 +66,7 @@ class SignUp extends Component {
               onChange={this.handleChange}
               value={password}
               placeholder="Password"
+              onKeyDown={this.handleKeyDown}
             />
             <input
               type="password"
@@ -69,6 +74,7 @@ class SignUp extends Component {
               value={confPass}
               name="confPass"
               placeholder="Re-Enter the password"
+              onKeyDown={this.handleKeyDown}
             />
             <button onClick={this.handleSubmit}>Sign Up</button>
             {error ? <p>{error.message}</p> : null}

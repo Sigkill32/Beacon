@@ -36,6 +36,13 @@ class Login extends Component {
     firebaseApp.auth().signOut();
   };
 
+  handleKeyDown = e => {
+    if (e.keyCode === 13) {
+      console.log("enter");
+      this.handleSubmit();
+    }
+  };
+
   render() {
     const { username, password, error, loggedIn } = this.state;
     const { authenticated } = this.props;
@@ -45,7 +52,7 @@ class Login extends Component {
           <div className="Already-logged">
             <h1>Seems Like you are logged in already</h1>
             <button onClick={this.logOutUser}>
-              Logout to continue &#8594;
+              Logout to continue &#8680;
             </button>
           </div>
         ) : (
@@ -56,6 +63,7 @@ class Login extends Component {
               value={username}
               placeholder="Username"
               onChange={this.handleChange}
+              onKeyDown={this.handleKeyDown}
             />
             <input
               type="password"
@@ -63,6 +71,7 @@ class Login extends Component {
               value={password}
               placeholder="Password"
               onChange={this.handleChange}
+              onKeyDown={this.handleKeyDown}
             />
             <button onClick={this.handleSubmit}>Login</button>
             {(() => {
