@@ -1,17 +1,21 @@
 import React, { Component } from "react";
-import Users from "./components/users";
-import ChatBox from "./components/chatBox";
-import ChatButton from "./components/chatButton";
+import { Route, Switch } from "react-router-dom";
 import {
   db,
   firebaseAppAuth,
   providers,
-  withFirebaseAuth
+  withFirebaseAuth,
+  firebaseApp
 } from "./config/firebaseConf";
 import "./App.css";
+import Dashboard from "./components/dashboard";
+import Nav from "./components/nav";
+import Login from "./components/login";
+import SignUp from "./components/signUp";
 
 class App extends Component {
   state = {
+    authenticated: false,
     users: [],
     name: "",
     sub: "",
@@ -23,6 +27,15 @@ class App extends Component {
 
   async componentDidMount() {
     await this.getData();
+    firebaseApp.auth().onAuthStateChanged(authenticated => {
+      authenticated
+        ? this.setState(() => ({
+            authenticated: true
+          }))
+        : this.setState(() => ({
+            authenticated: false
+          }));
+    });
   }
 
   getData = async () => {
@@ -122,6 +135,7 @@ class App extends Component {
 
   render() {
     const {
+      authenticated,
       name,
       email,
       sub,
@@ -130,43 +144,40 @@ class App extends Component {
       closed,
       noEmailButton
     } = this.state;
-    const { user, signOut, signInWithGoogle } = this.props;
+
     return (
       <div>
-        {user ? (
-          <div>
-            <button onClick={signOut} className="sign-out">
-              Sign out
-            </button>
-            <Users users={users} />
-            <ChatBox
-              name={name}
-              email={email}
-              sub={sub}
-              message={message}
-              onHandleChange={this.handleChange}
-              onHandleSend={this.handleSend}
-              closed={closed}
-              onRef={ref => (this.upload = ref)}
-              onHandleUpload={this.handleUpload}
-              noEmailButton={noEmailButton}
-              onHandleEmailButton={this.handleEmailButton}
-              onHandleBack={this.handleBack}
-            />
-            <ChatButton
-              closed={closed}
-              onHandleClose={this.handleClose}
-              onHandleMessage={this.handleMessage}
-            />
-          </div>
-        ) : (
-          <div className="sign-in">
-            <div>
-              <p>Please Sign in to Continue</p>
-              <button onClick={signInWithGoogle}>Sign in With Google</button>
-            </div>
-          </div>
-        )}
+        <Nav authenticated={authenticated} />
+        <Switch>
+          <Route
+            path="/login"
+            render={props => <Login {...props} authenticated={authenticated} />}
+          />
+          <Route path="/register" component={SignUp} />
+          <Route
+            path="/dashboard"
+            render={props => (
+              <Dashboard
+                users={users}
+                name={name}
+                email={email}
+                sub={sub}
+                message={message}
+                onHandleChange={this.handleChange}
+                onHandleSend={this.handleSend}
+                closed={closed}
+                onRef={ref => (this.upload = ref)}
+                onHandleUpload={this.handleUpload}
+                noEmailButton={noEmailButton}
+                onHandleEmailButton={this.handleEmailButton}
+                onHandleBack={this.handleBack}
+                onHandleClose={this.handleClose}
+                onHandleMessage={this.handleMessage}
+                {...props}
+              />
+            )}
+          />
+        </Switch>
       </div>
     );
   }

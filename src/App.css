@@ -372,6 +372,90 @@
   border-radius: 0 0 50% 50%;
 }
 
+.nav {
+  background-color: #f96e5b;
+  padding: 10px;
+}
+.nav a {
+  margin-right: 20px;
+  text-decoration: none;
+  margin-bottom: 40px;
+  color: white;
+}
+.nav a:hover {
+  color: black;
+}
+
+.login {
+  padding: 20px;
+  position: absolute;
+  left: calc((100% - 370px) / 2);
+  top: calc((100% - 165px) / 2);
+  background-color: #c1cbd4;
+  display: inline-block;
+}
+.login input {
+  height: 20px;
+  margin-bottom: 5px;
+  display: block;
+  border-radius: 2px;
+  width: 350px;
+  padding: 10px;
+  border: none;
+}
+.login button {
+  background-color: #07c;
+  padding: 10px;
+  color: white;
+  border-radius: 2px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  width: 370px;
+}
+.login p {
+  margin-top: 20px;
+  text-align: center;
+  color: red;
+  font-size: 15px;
+}
+
+.sign-up {
+  padding: 20px;
+  position: absolute;
+  left: calc((100% - 370px) / 2);
+  top: calc((100% - 165px) / 2);
+  background-color: #c1cbd4;
+  display: inline-block;
+}
+.sign-up input {
+  height: 20px;
+  margin-bottom: 5px;
+  display: block;
+  border-radius: 2px;
+  width: 350px;
+  padding: 10px;
+  border: none;
+}
+.sign-up button {
+  background-color: #07c;
+  padding: 10px;
+  color: white;
+  border-radius: 2px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  width: 370px;
+}
+.sign-up p {
+  margin-top: 20px;
+  text-align: center;
+  color: red;
+  font-size: 15px;
+}
+
 /*# sourceMappingURL=App.css.map */
 
 /*# sourceMappingURL=App.css.map */
