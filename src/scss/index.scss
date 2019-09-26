@@ -267,15 +267,16 @@
 }
 
 .sign-out {
+  border: solid 2px white;
   position: absolute;
   right: 20px;
-  top: 8px;
+  top: 5px;
   background-color: black;
   padding: 10px 15px;
   color: white;
   border-radius: 20px;
   font-weight: bold;
-  border: none;
+  // border: none;
   cursor: pointer;
   outline: none;
   &:hover {

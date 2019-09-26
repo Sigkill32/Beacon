@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { db, firebaseApp } from "./config/firebaseConf";
 import "./App.css";
 import Dashboard from "./components/dashboard";
@@ -143,7 +143,6 @@ class App extends Component {
       <div>
         <Nav authenticated={authenticated} />
         <Switch>
-          {/* {authenticated ? <Redirect from="/" to="/dashboard" /> : null} */}
           <Route
             path="/login"
             render={props => <Login {...props} authenticated={authenticated} />}
@@ -154,6 +153,11 @@ class App extends Component {
               <SignUp {...props} authenticated={authenticated} />
             )}
           />
+          {/* {authenticated ? (
+            <Redirect exact from="/login" to="/dashboard" />
+          ) : (
+            <Redirect from="/dashboard" to="/login" />
+          )} */}
           <Route
             path="/dashboard"
             render={
