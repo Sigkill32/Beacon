@@ -11,6 +11,11 @@ class Login extends Component {
     loggedIn: "init"
   };
 
+  componentDidMount() {
+    const token = localStorage.getItem("token");
+    if (token) this.props.onHandleAuth();
+  }
+
   handleChange = event => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
@@ -24,16 +29,14 @@ class Login extends Component {
       .signInWithEmailAndPassword(username, password)
       .then(user => {
         this.setState({ loggedIn: "loggedIn" });
-        this.props.history.push("/dashboard");
+        //this.props.history.push("/dashboard");
+        localStorage.setItem("token", "test");
+        this.props.onHandleAuth();
       })
       .catch(error => {
         console.log(error);
         this.setState({ error });
       });
-  };
-
-  logOutUser = () => {
-    firebaseApp.auth().signOut();
   };
 
   handleKeyDown = e => {
@@ -45,52 +48,43 @@ class Login extends Component {
 
   render() {
     const { username, password, error, loggedIn } = this.state;
-    const { authenticated } = this.props;
+    console.log("auth", this.props.authenticated);
     return (
       <div className="login-wrapper">
-        {authenticated ? (
-          <div className="Already-logged">
-            <h1>Seems Like you are logged in already</h1>
-            <button onClick={this.logOutUser}>
-              Logout to continue &#8680;
-            </button>
-          </div>
-        ) : (
-          <div className="login">
-            <input
-              type="text"
-              name="username"
-              value={username}
-              placeholder="Username"
-              onChange={this.handleChange}
-              onKeyDown={this.handleKeyDown}
-            />
-            <input
-              type="password"
-              name="password"
-              value={password}
-              placeholder="Password"
-              onChange={this.handleChange}
-              onKeyDown={this.handleKeyDown}
-            />
-            <button onClick={this.handleSubmit}>Login</button>
-            {(() => {
-              switch (loggedIn && error === null) {
-                case "init":
-                  return null;
-                case "loggingIn":
-                  return (
-                    <div className="log-spin">
-                      <Spinner name="circle" />
-                    </div>
-                  );
-                default:
-                  return null;
-              }
-            })()}
-            {error ? <p>{error.message}</p> : null}
-          </div>
-        )}
+        <div className="login">
+          <input
+            type="text"
+            name="username"
+            value={username}
+            placeholder="Username"
+            onChange={this.handleChange}
+            onKeyDown={this.handleKeyDown}
+          />
+          <input
+            type="password"
+            name="password"
+            value={password}
+            placeholder="Password"
+            onChange={this.handleChange}
+            onKeyDown={this.handleKeyDown}
+          />
+          <button onClick={this.handleSubmit}>Login</button>
+          {(() => {
+            switch (loggedIn && error === null) {
+              case "init":
+                return null;
+              case "loggingIn":
+                return (
+                  <div className="log-spin">
+                    <Spinner name="circle" />
+                  </div>
+                );
+              default:
+                return null;
+            }
+          })()}
+          {error ? <p>{error.message}</p> : null}
+        </div>
       </div>
     );
   }

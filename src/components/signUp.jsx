@@ -10,6 +10,11 @@ class SignUp extends Component {
     error: null
   };
 
+  componentDidMount() {
+    const token = localStorage.getItem("token");
+    if (token) this.props.onHandleAuth();
+  }
+
   handleChange = event => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
@@ -28,9 +33,7 @@ class SignUp extends Component {
     } else this.setState({ error: { message: "Passwords do not match" } });
   };
 
-  verifyPass = (password, confPass) => {
-    return confPass === password ? true : false;
-  };
+  verifyPass = (password, confPass) => confPass === password;
 
   logOutUser = () => {
     firebaseApp.auth().signOut();
@@ -42,44 +45,36 @@ class SignUp extends Component {
 
   render() {
     const { username, password, error, confPass } = this.state;
-    const { authenticated } = this.props;
     return (
       <div className="sign-up-wrapper">
-        {authenticated ? (
-          <div className="Already-logged">
-            <h1>You need to logout to register a new user</h1>
-            <button onClick={this.logOutUser}>Logout</button>
-          </div>
-        ) : (
-          <div className="sign-up">
-            <input
-              type="text"
-              name="username"
-              onChange={this.handleChange}
-              value={username}
-              placeholder="Username"
-              onKeyDown={this.handleKeyDown}
-            />
-            <input
-              type="password"
-              name="password"
-              onChange={this.handleChange}
-              value={password}
-              placeholder="Password"
-              onKeyDown={this.handleKeyDown}
-            />
-            <input
-              type="password"
-              onChange={this.handleChange}
-              value={confPass}
-              name="confPass"
-              placeholder="Re-Enter the password"
-              onKeyDown={this.handleKeyDown}
-            />
-            <button onClick={this.handleSubmit}>Sign Up</button>
-            {error ? <p>{error.message}</p> : null}
-          </div>
-        )}
+        <div className="sign-up">
+          <input
+            type="text"
+            name="username"
+            onChange={this.handleChange}
+            value={username}
+            placeholder="Username"
+            onKeyDown={this.handleKeyDown}
+          />
+          <input
+            type="password"
+            name="password"
+            onChange={this.handleChange}
+            value={password}
+            placeholder="Password"
+            onKeyDown={this.handleKeyDown}
+          />
+          <input
+            type="password"
+            onChange={this.handleChange}
+            value={confPass}
+            name="confPass"
+            placeholder="Re-Enter the password"
+            onKeyDown={this.handleKeyDown}
+          />
+          <button onClick={this.handleSubmit}>Sign Up</button>
+          {error ? <p>{error.message}</p> : null}
+        </div>
       </div>
     );
   }
