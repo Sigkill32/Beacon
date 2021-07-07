@@ -1,4 +1,5 @@
 import React from "react";
+import Spinner from "react-spinkit";
 
 const Users = ({ users }) => {
   return (
@@ -26,7 +27,13 @@ const Users = ({ users }) => {
           </tbody>
         </table>
       ) : (
-        <h1>No Messages Yet</h1>
+        <div className="spinner">
+          <Spinner
+            name="ball-spin-fade-loader"
+            color="steelblue"
+            className="spinner"
+          />
+        </div>
       )}
     </div>
   );

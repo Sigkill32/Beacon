@@ -195,6 +195,7 @@
 }
 
 .users {
+  margin-top: 40px;
   table {
     width: 100%;
   }
@@ -266,14 +267,16 @@
 }
 
 .sign-out {
-  float: right;
-  margin: 20px;
+  border: solid 2px white;
+  position: absolute;
+  right: 20px;
+  top: 5px;
   background-color: black;
   padding: 10px 15px;
   color: white;
   border-radius: 20px;
   font-weight: bold;
-  border: none;
+  // border: none;
   cursor: pointer;
   outline: none;
   &:hover {
@@ -384,6 +387,126 @@
 
 .contact-conf {
   border-radius: 0 0 50% 50%;
+}
+
+.nav {
+  background-color: #f96e5b;
+  padding: 16px;
+  a {
+    margin-right: 20px;
+    text-decoration: none;
+    margin-bottom: 40px;
+    color: white;
+    &:hover {
+      color: black;
+    }
+  }
+}
+
+.login {
+  padding: 20px;
+  position: absolute;
+  left: calc((100% - 370px) / 2);
+  top: calc((100% - 165px) / 2);
+  background-color: #c1cbd4;
+  display: inline-block;
+  input {
+    height: 20px;
+    margin-bottom: 5px;
+    display: block;
+    border-radius: 2px;
+    width: 350px;
+    padding: 10px;
+    border: none;
+  }
+
+  button {
+    background-color: #07c;
+    padding: 10px;
+    color: white;
+    border-radius: 2px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    width: 370px;
+  }
+
+  .log-spin {
+    margin-top: 10px;
+    margin-left: calc(50% - 11px);
+  }
+
+  p {
+    margin-top: 20px;
+    text-align: center;
+    color: red;
+    font-size: 15px;
+  }
+}
+
+.Already-logged {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: calc((100% - 748.484px) / 2);
+  button {
+    position: relative;
+    margin-left: 20px;
+    background-color: black;
+    padding: 10px 15px;
+    color: white;
+    border-radius: 20px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    &:hover {
+      background-color: grey;
+    }
+  }
+}
+
+.sign-up {
+  padding: 20px;
+  position: absolute;
+  left: calc((100% - 370px) / 2);
+  top: calc((100% - 165px) / 2);
+  background-color: #c1cbd4;
+  display: inline-block;
+  input {
+    height: 20px;
+    margin-bottom: 5px;
+    display: block;
+    border-radius: 2px;
+    width: 350px;
+    padding: 10px;
+    border: none;
+  }
+  button {
+    background-color: #07c;
+    padding: 10px;
+    color: white;
+    border-radius: 2px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    width: 370px;
+  }
+
+  p {
+    margin-top: 20px;
+    text-align: center;
+    color: red;
+    font-size: 15px;
+  }
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
 }
 
 /*# sourceMappingURL=App.css.map */

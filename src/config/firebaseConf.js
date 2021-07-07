@@ -20,4 +20,4 @@ const providers = {
   googleProvider: new firebase.auth.GoogleAuthProvider()
 };
 
-export { db, firebaseAppAuth, providers, withFirebaseAuth };
+export { db, firebaseAppAuth, providers, withFirebaseAuth, firebaseApp };

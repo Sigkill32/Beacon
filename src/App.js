@@ -1,17 +1,16 @@
 import React, { Component } from "react";
-import Users from "./components/users";
-import ChatBox from "./components/chatBox";
-import ChatButton from "./components/chatButton";
-import {
-  db,
-  firebaseAppAuth,
-  providers,
-  withFirebaseAuth
-} from "./config/firebaseConf";
+import { Route, Switch, Redirect } from "react-router-dom";
+import { db, firebaseApp } from "./config/firebaseConf";
 import "./App.css";
+import Dashboard from "./components/dashboard";
+import Nav from "./components/nav";
+import Login from "./components/login";
+import SignUp from "./components/signUp";
+import ProtectedRoute from "./components/protectedRoute";
 
 class App extends Component {
   state = {
+    authenticated: false,
     users: [],
     name: "",
     sub: "",
@@ -23,7 +22,25 @@ class App extends Component {
 
   async componentDidMount() {
     await this.getData();
+    const token = localStorage.getItem("token");
+    let auth = false;
+    if (token) {
+      firebaseApp.auth().onAuthStateChanged(authenticated => {
+        authenticated
+          ? console.log(authenticated)
+          : this.setState({ authenticated: false });
+      });
+    }
+    if (auth === true) {
+      localStorage.setItem("token", "test");
+      this.setState({ authenticated: true });
+    }
+    console.log(this.state.authenticated);
   }
+
+  // componentDidUpdate() {
+  //   console.log("comp did up", this.state.authenticated);
+  // }
 
   getData = async () => {
     let users = [];
@@ -120,8 +137,18 @@ class App extends Component {
     this.setState({ noEmailButton: "init" });
   };
 
+  setAuth = () => {
+    this.setState({ authenticated: true });
+  };
+
+  removeAuth = () => {
+    this.setState({ authenticated: false });
+    console.log("remove Auth");
+  };
+
   render() {
     const {
+      authenticated,
       name,
       email,
       sub,
@@ -130,49 +157,74 @@ class App extends Component {
       closed,
       noEmailButton
     } = this.state;
-    const { user, signOut, signInWithGoogle } = this.props;
+
+    console.log("App", authenticated);
+
     return (
       <div>
-        {user ? (
-          <div>
-            <button onClick={signOut} className="sign-out">
-              Sign out
-            </button>
-            <Users users={users} />
-            <ChatBox
-              name={name}
-              email={email}
-              sub={sub}
-              message={message}
-              onHandleChange={this.handleChange}
-              onHandleSend={this.handleSend}
-              closed={closed}
-              onRef={ref => (this.upload = ref)}
-              onHandleUpload={this.handleUpload}
-              noEmailButton={noEmailButton}
-              onHandleEmailButton={this.handleEmailButton}
-              onHandleBack={this.handleBack}
-            />
-            <ChatButton
-              closed={closed}
-              onHandleClose={this.handleClose}
-              onHandleMessage={this.handleMessage}
-            />
-          </div>
-        ) : (
-          <div className="sign-in">
-            <div>
-              <p>Please Sign in to Continue</p>
-              <button onClick={signInWithGoogle}>Sign in With Google</button>
-            </div>
-          </div>
-        )}
+        <Nav authenticated={authenticated} onHandleLogout={this.removeAuth} />
+        <Switch>
+          <Route
+            exact
+            path="/login"
+            render={props =>
+              authenticated ? (
+                <Redirect to="/dashboard" />
+              ) : (
+                <Login
+                  {...props}
+                  authenticated={authenticated}
+                  onHandleAuth={this.setAuth}
+                />
+              )
+            }
+          />
+          <ProtectedRoute
+            authenticated={authenticated}
+            exact
+            path="/dashboard"
+            render={props => (
+              <Dashboard
+                authenticated={authenticated}
+                users={users}
+                name={name}
+                email={email}
+                sub={sub}
+                message={message}
+                onHandleChange={this.handleChange}
+                onHandleSend={this.handleSend}
+                closed={closed}
+                onRef={ref => (this.upload = ref)}
+                onHandleUpload={this.handleUpload}
+                noEmailButton={noEmailButton}
+                onHandleEmailButton={this.handleEmailButton}
+                onHandleBack={this.handleBack}
+                onHandleClose={this.handleClose}
+                onHandleMessage={this.handleMessage}
+                {...props}
+              />
+            )}
+          />
+          />
+          <Route
+            path="/register"
+            exact
+            render={props =>
+              authenticated ? (
+                <Redirect to="dashboard" />
+              ) : (
+                <SignUp
+                  {...props}
+                  authenticated={authenticated}
+                  onHandleAuth={this.setAuth}
+                />
+              )
+            }
+          />
+        </Switch>
       </div>
     );
   }
 }
 
-export default withFirebaseAuth({
-  providers,
-  firebaseAppAuth
-})(App);
+export default App;
